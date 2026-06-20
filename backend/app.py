@@ -1,4 +1,5 @@
 import os
+import sys
 import sqlite3
 import joblib
 import pandas as pd
@@ -11,9 +12,12 @@ import matplotlib.pyplot as plt
 import io
 import base64
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if BASE_DIR not in sys.path:
+    sys.path.append(BASE_DIR)
+
 from threshold_checker import check_threshold
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'static')
 
