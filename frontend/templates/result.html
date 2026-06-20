@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimation Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="/">Eco Footprint</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="mb-0">Emission Results</h3>
+                    </div>
+                    <div class="card-body p-5">
+                        <h4 class="text-muted mb-4">Target: {{ user_type.capitalize() }}</h4>
+                        
+                        <div class="display-4 fw-bold mb-3">
+                            {{ emission }} <span class="fs-4 text-muted">kg CO2</span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            {% if status == 'Safe' %}
+                                <span class="badge bg-success fs-5 p-2 px-4 rounded-pill">Status: {{ status }}</span>
+                            {% else %}
+                                <span class="badge bg-danger fs-5 p-2 px-4 rounded-pill">Status: {{ status }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="alert {% if status == 'Safe' %}alert-success{% else %}alert-danger{% endif %} text-start" role="alert">
+                            <h5 class="alert-heading">Suggestion:</h5>
+                            <p class="mb-0">{{ suggestion }}</p>
+                        </div>
+
+                        <div class="mt-5">
+                            <a href="/{{ user_type }}" class="btn btn-outline-secondary me-2">Recalculate</a>
+                            <a href="/dashboard" class="btn btn-success">View Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
